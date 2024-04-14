@@ -3,6 +3,7 @@
 @section('content')
     <div class="container d-flex flex-column align-items-center">
         <h1>This is the comic:</h1>
+        <a href="{{ route('comics.edit', $comic->id) }}" class="btn btn-primary">edit</a>
 
         <div class="card" style="width: 18rem;">
             <img src=" {{ $comic->thumb }}" class="card-img-top" alt="...">
