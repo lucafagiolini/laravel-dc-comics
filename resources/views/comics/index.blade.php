@@ -3,6 +3,7 @@
 @section('content')
     <div class="container">
         <h1>Comics</h1>
+        <a href="{{ route('comics.create') }}" class="btn btn-primary">add new comic now</a>
         <table class="table">
             <thead>
                 <tr>
@@ -21,6 +22,8 @@
                     </tr>
                 </tbody>
             @endforeach
+
+
         </table>
     </div>
 @endsection
