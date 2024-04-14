@@ -17,7 +17,7 @@
                     <tr>
                         <td>{{ $comic->title }}</td>
                         <td>{{ $comic->artists }}</td>
-                        <td><a href="#" class="btn btn-primary">Visualizza</a></td>
+                        <td><a href="{{ route('comics.show', $comic->id) }}" class="btn btn-primary">visualizza</a></td>
                     </tr>
                 </tbody>
             @endforeach
