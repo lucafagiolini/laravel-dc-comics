@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreComicRequest;
 use App\Models\Comic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -29,10 +30,12 @@ class ComicController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreComicRequest $request)
 
     {
-        $this->validation($request->all());
+        // $this->validation($request->all());
+
+        $request->validated();
 
         $newComic = new Comic();
         $newComic->title = $request->title;
@@ -69,10 +72,14 @@ class ComicController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Comic $comic)
+    public function update(StoreComicRequest $request, Comic $comic)
 
     {
-        $this->validation($request->all());
+
+        // $this->validation($request->all());
+
+        $request->validated();
+
         $comic->title = $request->title;
         $comic->description = $request->description;
         $comic->thumb = $request->thumb;
@@ -91,28 +98,11 @@ class ComicController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+
     public function destroy(Comic $comic)
     {
         $comic->delete();
 
         return redirect()->route('comics.index');
-    }
-
-    private function validation($data)
-    {
-
-        $validator = Validator::make($data, [
-
-            'title' => 'required|max:100',
-            'description' => 'nullable',
-            'thumb' => 'nullable',
-            'price' => 'required|max:8',
-            'series' => 'required|max:150',
-            'sale_date' => 'required|date',
-            'type' => 'required|max:150',
-            'artists' => 'nullable',
-            'writers' => 'nullable',
-
-        ])->validate();
     }
 }
